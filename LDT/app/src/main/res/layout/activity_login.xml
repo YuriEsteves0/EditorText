@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    style="@style/RelativeLayoutStyle"
+    tools:context=".View.LoginActivity">
+
+    <!--    <ImageView android:id="@+id/backBtn"-->
+    <!--        android:layout_width="25dp"-->
+    <!--        android:layout_height="30dp"-->
+    <!--        android:src="@drawable/back"-->
+    <!--        android:layout_margin="20dp"/>-->
+
+    <TextView android:id="@+id/loginTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Log in"
+        android:fontFamily="@font/montserrat_bold"
+        android:textSize="25sp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="60dp"/>
+
+    <com.google.android.material.tabs.TabLayout android:id="@+id/tabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/loginTxt"
+        android:layout_marginTop="30dp"
+        app:tabIndicatorFullWidth="true"
+        app:tabIndicatorColor="@color/blue"
+        android:background="@color/offwhite">
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Email" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Phone Number"/>
+
+    </com.google.android.material.tabs.TabLayout>
+
+    <RelativeLayout android:id="@+id/email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tabLayout"
+        android:layout_margin="20dp">
+
+        <com.google.android.material.textfield.TextInputLayout android:id="@+id/til1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Email"
+            app:boxStrokeWidth="1dp"
+            app:endIconMode="clear_text">
+            <com.google.android.material.textfield.TextInputEditText android:id="@+id/emailInput"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/black"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout android:id="@+id/til2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Senha"
+            android:layout_below="@id/til1"
+            app:boxStrokeWidth="1dp"
+            android:layout_marginTop="5dp"
+            app:endIconMode="clear_text">
+            <com.google.android.material.textfield.TextInputEditText android:id="@+id/senhaInput"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/black"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout android:id="@+id/til3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Repita a senha"
+            app:boxStrokeWidth="1dp"
+            android:layout_below="@id/til2"
+            android:layout_marginTop="5dp"
+            app:endIconMode="clear_text">
+            <com.google.android.material.textfield.TextInputEditText android:id="@+id/senhaInput2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/black"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button android:id="@+id/btnEntrar"
+        style="@style/Widget.Material3.Button.ElevatedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/til3"
+            android:layout_marginTop="10dp"
+            android:layout_alignParentEnd="true"
+            android:text="Entrar"
+            android:backgroundTint="@color/blue"
+            android:textColor="@color/white"
+            />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="30dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Não tem uma conta?"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" Clique aqui"
+            android:textColor="@color/blue"
+            android:fontFamily="@font/montserrat_bold"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

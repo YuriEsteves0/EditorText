@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:id="@+id/card"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="15dp"
+    android:background="@drawable/border_shape_card_20">
+
+    <TextView android:id="@+id/nomeCard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="Titulo Card"/>
+
+    <TextView android:id="@+id/dataCriacao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/nomeCard"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/blue"
+        android:text="26-11-2006"/>
+
+    <ImageView android:id="@+id/delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/close_24"
+        android:layout_alignParentEnd="true"/>
+
+    <View android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/blue"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/dataCriacao"/>
+</RelativeLayout>
