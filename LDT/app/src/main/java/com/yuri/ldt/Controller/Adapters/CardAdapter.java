@@ -11,8 +11,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.yuri.ldt.Controller.Helpers.AndroidHelper;
 import com.yuri.ldt.Model.CardModel;
 import com.yuri.ldt.R;
+import com.yuri.ldt.View.CardEdit;
 
 import java.util.List;
 
@@ -37,6 +39,10 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.MyViewHolder> 
         CardModel card = cardModelList.get(position);
         holder.nomeCard.setText(card.getTitulo());
         holder.dataCriacao.setText(card.getData());
+
+        holder.card.setOnClickListener(v -> {
+            AndroidHelper.changeIntent(context, CardEdit.class);
+        });
     }
 
     @Override

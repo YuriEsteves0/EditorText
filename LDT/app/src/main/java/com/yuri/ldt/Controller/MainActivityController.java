@@ -1,12 +1,25 @@
 package com.yuri.ldt.Controller;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
+
+import com.yuri.ldt.Controller.Helpers.ActivityHelper;
 import com.yuri.ldt.Model.CardModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivityController {
+
     private List<CardModel> cardModelList = new ArrayList<>();
+    private static SharedPreferences sharedPreferences;
+
+    public MainActivityController(Activity activity){
+        ActivityHelper.finishAll();
+        ActivityHelper activityHelper = new ActivityHelper(activity);
+    }
+
     public List<CardModel> criarCardsExemplares(){
         CardModel cardModel = new CardModel();
         cardModel.setIdCard("1");
@@ -26,5 +39,12 @@ public class MainActivityController {
         cardModelList.add(cardModel2);
 
         return cardModelList;
+    }
+
+    public static void logoff(Context context){
+        sharedPreferences = context.getSharedPreferences("user", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.clear();
+        editor.apply();
     }
 }

@@ -2,11 +2,13 @@ package com.yuri.ldt.Controller;
 
 import static android.content.Context.MODE_PRIVATE;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Handler;
 import android.util.Log;
 
+import com.yuri.ldt.Controller.Helpers.ActivityHelper;
 import com.yuri.ldt.Controller.Helpers.AndroidHelper;
 import com.yuri.ldt.View.LoginActivity;
 import com.yuri.ldt.View.MainActivity;
@@ -15,8 +17,9 @@ public class SplashScreenController {
     public boolean logged = false;
     private SharedPreferences sharedPreferences;
 
-    public SplashScreenController(Context context) {
-        isLogged(context);
+        public SplashScreenController(Activity activity) {
+        isLogged(activity);
+        ActivityHelper activityHelper = new ActivityHelper(activity);
     }
 
     public void isLogged(Context context) {

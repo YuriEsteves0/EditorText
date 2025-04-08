@@ -1,10 +1,12 @@
 package com.yuri.ldt.Controller;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 
 import com.google.android.material.textfield.TextInputEditText;
+import com.yuri.ldt.Controller.Helpers.ActivityHelper;
 import com.yuri.ldt.Controller.Helpers.AndroidHelper;
 import com.yuri.ldt.Model.Server.User.UserResponse;
 import com.yuri.ldt.Controller.Interfaces.WebAPIService;
@@ -18,7 +20,10 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class LoginActivityController {
-    public LoginActivityController(){}
+    public LoginActivityController(Activity activity){
+        ActivityHelper.finishAll();
+        ActivityHelper activityHelper = new ActivityHelper(activity);
+    }
 
     public void verifDados(Context context, TextInputEditText senhaInput2, TextInputEditText senhaInput, TextInputEditText emailInput){
         Log.d("TAG", "Senha2: " + senhaInput2.getText().toString() + " Senha: " + senhaInput.getText().toString() + " Email: " + emailInput.getText().toString());

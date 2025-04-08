@@ -22,7 +22,7 @@ public class LoginActivity extends AppCompatActivity {
     private RelativeLayout email;
     private Button btnEntrar;
     private TextInputEditText senhaInput2, senhaInput, emailInput;
-    private LoginActivityController loginActivityController = new LoginActivityController();
+    private LoginActivityController loginActivityController = new LoginActivityController(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -2,13 +2,20 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/add"
+        android:id="@+id/strong"
         android:title="Add"
-        android:icon="@drawable/round_add_24"
+        android:icon="@drawable/bold_24"
         app:showAsAction="ifRoom"/>
+
     <item
-        android:id="@+id/more"
+        android:id="@+id/italic"
         android:title="More"
-        android:icon="@drawable/more_vert_24"
+        android:icon="@drawable/italic_24"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/underline"
+        android:title="More"
+        android:icon="@drawable/underline_24"
         app:showAsAction="ifRoom"/>
 </menu>

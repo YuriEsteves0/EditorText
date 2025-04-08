@@ -8,6 +8,10 @@
         <item name="android:fontFamily">@font/montserrat</item>
     </style>
 
+    <style name="MyPopupMenu" parent="Widget.AppCompat.PopupMenu.Overflow">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:popupBackground">@color/offwhite</item>
+    </style>
 
     <style name="RelativeLayoutStyle">
         <item name="android:background">@color/offwhite</item>
