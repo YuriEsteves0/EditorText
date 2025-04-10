@@ -45,7 +45,6 @@
             android:maxLines="9999" />
     </androidx.core.widget.NestedScrollView>
 
-    <!-- Botões de formatação -->
     <LinearLayout
         android:id="@+id/formatToolbar"
         android:layout_width="match_parent"

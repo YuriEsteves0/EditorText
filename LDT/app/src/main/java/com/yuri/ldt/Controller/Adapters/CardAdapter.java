@@ -1,6 +1,8 @@
 package com.yuri.ldt.Controller.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,9 +41,16 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.MyViewHolder> 
         CardModel card = cardModelList.get(position);
         holder.nomeCard.setText(card.getTitulo());
         holder.dataCriacao.setText(card.getData());
+        Log.d("TAG", "dados card: " + card.getTitulo() + " " + card.getData() + " " + card.getIdCard() + " " + card.getIdUsuario() + " " + card.getDescricao());
 
         holder.card.setOnClickListener(v -> {
-            AndroidHelper.changeIntent(context, CardEdit.class);
+            Intent intent = new Intent(context, CardEdit.class);
+            intent.putExtra("idCard", card.getIdCard());
+            intent.putExtra("idUsuario", card.getIdUsuario());
+            intent.putExtra("titulo", card.getTitulo());
+            intent.putExtra("data", card.getData());
+            intent.putExtra("descricao", card.getDescricao());
+            context.startActivity(intent);
         });
     }
 

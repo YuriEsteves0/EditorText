@@ -1,5 +1,6 @@
 package com.yuri.ldt.View;
 
+import android.content.Intent;
 import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -35,6 +36,7 @@ public class CardEdit extends AppCompatActivity {
     private EditText editTextNote;
     private ImageView Underline, Bold, Italic;
     private SoftInputAssist softInputAssist;
+    private String textoDigitado, titulo, data, descricao, idCard, idUsuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,10 +50,19 @@ public class CardEdit extends AppCompatActivity {
         });
 
         pegarDados();
+        pegarDadosIntent();
 
         softInputAssist = new SoftInputAssist(this);
 
         CardEditController cardEditController = new CardEditController(this);
+
+        topAppBar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ActivityHelper.finishActivity(CardEdit.this);
+                finish();
+            }
+        });
 
         Underline.setOnClickListener(view -> {
             int start = editTextNote.getSelectionStart();
@@ -112,6 +123,18 @@ public class CardEdit extends AppCompatActivity {
         if (softInputAssist != null) softInputAssist.onResume();
     }
 
+    public void pegarDadosIntent(){
+        Intent intent = getIntent();
+        idCard = intent.getStringExtra("idCard");
+        idUsuario = intent.getStringExtra("idUsuario");
+        titulo = intent.getStringExtra("titulo");
+        data = intent.getStringExtra("data");
+        descricao = intent.getStringExtra("descricao");
+
+        topAppBar.setTitle(titulo);
+        editTextNote.setText(descricao);
+
+    }
 
     public void pegarDados(){
         topAppBar = findViewById(R.id.topAppBar);

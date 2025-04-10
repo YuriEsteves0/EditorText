@@ -1,11 +1,22 @@
 package com.yuri.ldt.Model;
 
+import com.google.gson.annotations.SerializedName;
+
 public class CardModel {
-    private String idCard;
-    private String titulo;
-    private String descricao;
-    private String data;
+    @SerializedName("idUsu")
     private String idUsuario;
+
+    @SerializedName("nomeCard")
+    private String titulo;
+
+    @SerializedName("textoCard")
+    private String descricao;
+
+    @SerializedName("dataCriacao")
+    private String data;
+
+    @SerializedName("idCard")
+    private String idCard;
 
     public CardModel() {}
 

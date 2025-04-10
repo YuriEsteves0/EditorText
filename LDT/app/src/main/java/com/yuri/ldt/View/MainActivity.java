@@ -3,6 +3,7 @@ package com.yuri.ldt.View;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.widget.EditText;
 import android.widget.ImageView;
 
 import androidx.activity.EdgeToEdge;
@@ -16,17 +17,20 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.yuri.ldt.Controller.Adapters.CardAdapter;
 import com.yuri.ldt.Controller.MainActivityController;
 import com.yuri.ldt.Model.CardModel;
 import com.yuri.ldt.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView RV;
     private MaterialToolbar topBar;
+    private List<CardModel> cardModelList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,12 +45,12 @@ public class MainActivity extends AppCompatActivity {
 
         pegarDados();
 
-        MainActivityController cards = new MainActivityController(this);
-        List<CardModel> cardModelList = cards.criarCardsExemplares();
+        MainActivityController controller = new MainActivityController(this);
 
         CardAdapter adapter = new CardAdapter(this, cardModelList);
         RV.setAdapter(adapter);
         RV.setLayoutManager(new LinearLayoutManager(this));
+        MainActivityController.receberCards(MainActivity.this, cardModelList, adapter);
 
         topBar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
@@ -56,6 +60,22 @@ public class MainActivity extends AppCompatActivity {
                 if (id == R.id.profile) {
                     MainActivityController.logoff(MainActivity.this);
                     return true;
+                }
+
+                if (id == R.id.add) {
+                    EditText input = new EditText(MainActivity.this);
+                    input.setHint("Digite o nome do card");
+
+                    new MaterialAlertDialogBuilder(MainActivity.this)
+                            .setTitle("Criar Card")
+                            .setView(input)
+                            .setPositiveButton("Criar", (dialog, which) -> {
+                                String textoDigitado = input.getText().toString();
+                                MainActivityController.criarCard(textoDigitado, MainActivity.this, cardModelList, adapter);
+
+                            })
+                            .setNegativeButton("Cancelar", null)
+                            .show();
                 }
                 return false;
             }
