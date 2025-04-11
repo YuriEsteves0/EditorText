@@ -32,4 +32,17 @@ public interface WebAPIService {
             @Field("idUsu") String idUsu,
             @Field("textoCard") String textoCard
     );
+
+    @FormUrlEncoded
+    @POST("updateCard.php")
+    Call<CardResponse> updateCard(
+            @Field("idCard") String idCard,
+            @Field("textoCard") String textoCard
+    );
+
+    @FormUrlEncoded
+    @POST("deletarCard.php")
+    Call<CardResponse> deletarCard(
+            @Field("idCard") String idCard
+    );
 }

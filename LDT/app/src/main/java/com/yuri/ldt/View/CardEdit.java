@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.StyleSpan;
@@ -34,7 +36,7 @@ public class CardEdit extends AppCompatActivity {
 
     private MaterialToolbar topAppBar;
     private EditText editTextNote;
-    private ImageView Underline, Bold, Italic;
+    private ImageView Underline, Bold, Italic, saving;
     private SoftInputAssist softInputAssist;
     private String textoDigitado, titulo, data, descricao, idCard, idUsuario;
 
@@ -54,7 +56,7 @@ public class CardEdit extends AppCompatActivity {
 
         softInputAssist = new SoftInputAssist(this);
 
-        CardEditController cardEditController = new CardEditController(this);
+        CardEditController cardEditController = new CardEditController(this, editTextNote, idCard, saving);
 
         topAppBar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,7 +74,7 @@ public class CardEdit extends AppCompatActivity {
                 SpannableStringBuilder stringBuilder = new SpannableStringBuilder(editTextNote.getText());
                 stringBuilder.setSpan(new UnderlineSpan(), start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
                 editTextNote.setText(stringBuilder);
-                editTextNote.setSelection(end); // opcional: mantém o cursor no lugar certo
+                editTextNote.setSelection(end);
                 AndroidHelper.logs("UNDERLINE");
             }
         });
@@ -109,12 +111,14 @@ public class CardEdit extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         if (softInputAssist != null) softInputAssist.onPause();
+        CardEditController.pararAutoSalvar();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         if (softInputAssist != null) softInputAssist.onDestroy();
+        CardEditController.pararAutoSalvar();
     }
 
     @Override
@@ -126,10 +130,10 @@ public class CardEdit extends AppCompatActivity {
     public void pegarDadosIntent(){
         Intent intent = getIntent();
         idCard = intent.getStringExtra("idCard");
-        idUsuario = intent.getStringExtra("idUsuario");
         titulo = intent.getStringExtra("titulo");
-        data = intent.getStringExtra("data");
         descricao = intent.getStringExtra("descricao");
+        idUsuario = intent.getStringExtra("idUsuario");
+        data = intent.getStringExtra("data");
 
         topAppBar.setTitle(titulo);
         editTextNote.setText(descricao);
@@ -141,6 +145,7 @@ public class CardEdit extends AppCompatActivity {
         Underline = findViewById(R.id.Underline);
         Bold = findViewById(R.id.Bold);
         Italic = findViewById(R.id.Italic);
+        saving = findViewById(R.id.saving);
         editTextNote = findViewById(R.id.editTextNote);
     }
 }

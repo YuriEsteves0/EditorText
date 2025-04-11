@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.yuri.ldt.Controller.Helpers.AndroidHelper;
+import com.yuri.ldt.Controller.MainActivityController;
 import com.yuri.ldt.Model.CardModel;
 import com.yuri.ldt.R;
 import com.yuri.ldt.View.CardEdit;
@@ -41,7 +42,6 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.MyViewHolder> 
         CardModel card = cardModelList.get(position);
         holder.nomeCard.setText(card.getTitulo());
         holder.dataCriacao.setText(card.getData());
-        Log.d("TAG", "dados card: " + card.getTitulo() + " " + card.getData() + " " + card.getIdCard() + " " + card.getIdUsuario() + " " + card.getDescricao());
 
         holder.card.setOnClickListener(v -> {
             Intent intent = new Intent(context, CardEdit.class);
@@ -52,6 +52,14 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.MyViewHolder> 
             intent.putExtra("descricao", card.getDescricao());
             context.startActivity(intent);
         });
+
+        holder.delete.setOnClickListener(v -> {
+            MainActivityController.deletarCard(card.getIdCard());
+            cardModelList.remove(position);
+            notifyItemRemoved(position);
+            notifyItemRangeChanged(position, cardModelList.size());
+        });
+
     }
 
     @Override
@@ -62,7 +70,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.MyViewHolder> 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         private TextView nomeCard;
         private TextView dataCriacao;
-        private ImageView delete;
+        private ImageView delete, edit;
         private RelativeLayout card;
 
         public MyViewHolder(@NonNull View itemView) {
@@ -71,6 +79,8 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.MyViewHolder> 
             this.dataCriacao = itemView.findViewById(R.id.dataCriacao);
             this.delete = itemView.findViewById(R.id.delete);
             this.card = itemView.findViewById(R.id.card);
+            this.edit = itemView.findViewById(R.id.edit);
+
         }
     }
 }

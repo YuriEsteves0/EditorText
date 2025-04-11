@@ -82,6 +82,16 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        CardAdapter adapter = (CardAdapter) RV.getAdapter();
+        if (adapter != null) {
+            MainActivityController.receberCards(MainActivity.this, cardModelList, adapter);
+        }
+    }
+
+
     public void pegarDados(){
         RV = findViewById(R.id.RV);
         topBar = findViewById(R.id.topApp);
